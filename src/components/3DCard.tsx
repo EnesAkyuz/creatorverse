@@ -1,65 +1,79 @@
 // src/components/3DCard.tsx
-import React from 'react';
-import { animated } from 'react-spring';
-import { use3dEffect } from 'use-3d-effect';
+import React, { useRef } from 'react';
+import { useSpring, animated } from 'react-spring';
 import { FaFacebook, FaTwitter, FaInstagram, FaTwitch } from 'react-icons/fa';
+import './3DCard.css';
 
 interface CardProps {
   image: string;
   title: string;
   description: string;
-  socials?: { facebook?: string; twitter?: string; instagram?: string; twitch?: string };
+  socials: { facebook?: string; twitter?: string; instagram?: string; twitch?: string };
   learn: string;
 }
 
 const Card: React.FC<CardProps> = ({ image, title, description, socials, learn }) => {
-  const ref = React.useRef(null);
-  const { style, ...mouseHandlers } = use3dEffect(ref);
+  const ref = useRef<HTMLDivElement>(null);
+  const [props, set] = useSpring(() => ({
+    transform: 'perspective(600px) rotateY(0deg) rotateX(0deg) scale(1)',
+  }));
+
+  const calc = (x: number, y: number, rect: DOMRect) => [
+    -(y - (rect.top + rect.height / 2)) / 20,
+    (x - (rect.left + rect.width / 2)) / 20,
+  ];
+
+  const trans = (x: number, y: number) =>
+    `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(1.1)`;
 
   return (
     <animated.div
       ref={ref}
-      style={{
-        ...style,
-        width: '300px',
-        height: '400px',
-        borderRadius: '10px',
-        overflow: 'hidden',
-        position: 'relative',
-        cursor: 'pointer',
-        ...mouseHandlers,
+      className="card"
+      onMouseMove={({ clientX: x, clientY: y }) => {
+        if (ref.current) {
+          const rect = ref.current.getBoundingClientRect();
+          const [rotX, rotY] = calc(x, y, rect);
+          set({ transform: trans(rotX, rotY) });
+        }
       }}
+      onMouseLeave={() => set({ transform: 'perspective(600px) rotateY(0deg) rotateX(0deg) scale(1)' })}
+      style={props}
     >
-      <img src={image} alt={title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-      <div style={{
-        position: 'absolute',
-        top: 0,
-        left: 0,
-        width: '100%',
-        height: '100%',
-        background: 'linear-gradient(to bottom, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.9))',
-        color: 'white',
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'space-between',
-        padding: '1rem',
-      }}>
-        <div>
-          <h3>{title}</h3>
-          <p>{description}</p>
+      <div className="card-image" style={{ backgroundImage: `url(${image})` }}>
+        <div className="card-gradient"></div>
+      </div>
+      <div className="card-content">
+        <h3>{title}</h3>
+        <p>{description}</p>
+        <div className="card-socials">
+          {socials.facebook && (
+            <a href={socials.facebook} target="_blank" rel="noopener noreferrer">
+              <FaFacebook />
+            </a>
+          )}
+          {socials.twitter && (
+            <a href={socials.twitter} target="_blank" rel="noopener noreferrer">
+              <FaTwitter />
+            </a>
+          )}
+          {socials.instagram && (
+            <a href={socials.instagram} target="_blank" rel="noopener noreferrer">
+              <FaInstagram />
+            </a>
+          )}
+          {socials.twitch && (
+            <a href={socials.twitch} target="_blank" rel="noopener noreferrer">
+              <FaTwitch />
+            </a>
+          )}
         </div>
-        <div style={{ display: 'flex', gap: '0.5rem' }}>
-          {socials?.facebook && <a href={socials.facebook} target="_blank" rel="noopener noreferrer"><FaFacebook color="white" /></a>}
-          {socials?.twitter && <a href={socials.twitter} target="_blank" rel="noopener noreferrer"><FaTwitter color="white" /></a>}
-          {socials?.instagram && <a href={socials.instagram} target="_blank" rel="noopener noreferrer"><FaInstagram color="white" /></a>}
-          {socials?.twitch && <a href={socials.twitch} target="_blank" rel="noopener noreferrer"><FaTwitch color="white" /></a>}
-        </div>
-        <a href={learn} style={{ color: 'white', textDecoration: 'underline' }}>Learn more</a>
+        <a href={learn} className="card-learn" target="_blank" rel="noopener noreferrer">
+          Learn more
+        </a>
       </div>
     </animated.div>
   );
 };
 
 export default Card;
-
-

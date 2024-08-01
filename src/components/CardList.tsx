@@ -2,7 +2,6 @@
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../supabaseClient';
 import Card from './3DCard';
-import { Link } from 'react-router-dom';
 
 const CardList: React.FC = () => {
   const [items, setItems] = useState<any[]>([]);
