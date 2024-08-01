@@ -1,6 +1,6 @@
 // src/components/AddCreator.tsx
 import React from 'react';
-import './AddCreator.css';
+import './styles/AddCreator.css';
 
 const AddCreator: React.FC = () => {
   return (

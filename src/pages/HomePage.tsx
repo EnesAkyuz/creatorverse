@@ -1,9 +1,9 @@
 // src/components/HomePage.tsx
 import React, { useState } from 'react';
-import HeroSection from './HeroSection';
-import CreatorsSection from './CreatorsSection';
-import AddCreator from './AddCreator';
-import './HomePage.css';
+import HeroSection from '../components/HeroSection.tsx';
+import CreatorsSection from '../components/CreatorsSection.tsx';
+import AddCreator from '../components/AddCreator.tsx';
+import './styles/HomePage.css';
 
 const HomePage: React.FC = () => {
   const [showCreators, setShowCreators] = useState(true);

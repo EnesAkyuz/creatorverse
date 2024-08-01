@@ -3,10 +3,24 @@ import React, { useEffect, useState } from 'react';
 import { supabase } from '../supabaseClient';
 import { Link } from 'react-router-dom';
 import Card from './3DCard';
-import './CardList.css';
+import './styles/CardList.css';
+
+interface CardItem {
+  id: number | string;
+  image: string;
+  title: string;
+  description: string;
+  socials: {
+    facebook?: string;
+    twitter?: string;
+    instagram?: string;
+    twitch?: string;
+  };
+  learn: string;
+}
 
 const CardList: React.FC = () => {
-  const [items, setItems] = useState<any[]>([]);
+  const [items, setItems] = useState<CardItem[]>([]);
 
   useEffect(() => {
     const fetchCards = async () => {

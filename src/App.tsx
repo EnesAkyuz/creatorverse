@@ -1,8 +1,8 @@
 // src/App.tsx
 import React from 'react';
 import { Routes, Route } from 'react-router-dom';
-import HomePage from './components/HomePage';
-import CardDetail from './components/CardDetail';
+import HomePage from './pages/HomePage';
+import CardDetail from './pages/CardDetail';
 import './App.css';
 
 const App: React.FC = () => {

@@ -2,7 +2,7 @@
 import React, { useRef } from 'react';
 import { useSpring, animated } from 'react-spring';
 import { FaFacebook, FaTwitter, FaInstagram, FaTwitch } from 'react-icons/fa';
-import './3DCard.css';
+import './styles/3DCard.css';
 
 interface CardProps {
   image: string;

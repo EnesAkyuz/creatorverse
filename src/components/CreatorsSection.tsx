@@ -1,7 +1,7 @@
 // src/components/CreatorsSection.tsx
 import React from 'react';
 import CardList from './CardList';
-import './CreatorsSection.css';
+import './styles/CreatorsSection.css';
 
 const CreatorsSection: React.FC = () => {
   return (
