@@ -1,0 +1,27 @@
+/* src/components/CardList.css */
+
+.card-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px; /* Optional: limit the max width for better readability */
+}
+
+.card-list > * {
+  flex: 1 1 calc(33.333% - 1rem); /* Default to 3 columns */
+  box-sizing: border-box; /* Ensure padding and border are included in the width and height */
+}
+
+@media (max-width: 1024px) {
+  .card-list > * {
+    flex: 1 1 calc(50% - 1rem); /* 2 columns on medium screens */
+  }
+}
+
+@media (max-width: 768px) {
+  .card-list > * {
+    flex: 1 1 calc(100% - 1rem); /* 1 column on small screens */
+  }
+}

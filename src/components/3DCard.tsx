@@ -29,7 +29,7 @@ const Card: React.FC<CardProps> = ({ image, title, description, socials, learn }
   return (
     <animated.div
       ref={ref}
-      className="card"
+      className="card container"
       onMouseMove={({ clientX: x, clientY: y }) => {
         if (ref.current) {
           const rect = ref.current.getBoundingClientRect();
@@ -48,22 +48,22 @@ const Card: React.FC<CardProps> = ({ image, title, description, socials, learn }
         <p>{description}</p>
         <div className="card-socials">
           {socials.facebook && (
-            <a href={socials.facebook} target="_blank" rel="noopener noreferrer">
+            <a href={socials.facebook} target="_blank" rel="noopener noreferrer" className="secondary">
               <FaFacebook />
             </a>
           )}
           {socials.twitter && (
-            <a href={socials.twitter} target="_blank" rel="noopener noreferrer">
+            <a href={socials.twitter} target="_blank" rel="noopener noreferrer" className="secondary">
               <FaTwitter />
             </a>
           )}
           {socials.instagram && (
-            <a href={socials.instagram} target="_blank" rel="noopener noreferrer">
+            <a href={socials.instagram} target="_blank" rel="noopener noreferrer" className="secondary">
               <FaInstagram />
             </a>
           )}
           {socials.twitch && (
-            <a href={socials.twitch} target="_blank" rel="noopener noreferrer">
+            <a href={socials.twitch} target="_blank" rel="noopener noreferrer" className="secondary">
               <FaTwitch />
             </a>
           )}
