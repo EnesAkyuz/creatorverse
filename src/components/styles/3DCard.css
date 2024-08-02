@@ -3,9 +3,9 @@
 .card {
     width: 100%;
     max-width: 300px;
-    min-width: 200px; /* Ensure a minimum width */
+    min-width: 150px; 
     height: auto;
-    aspect-ratio: 3 / 4; /* Maintain a consistent aspect ratio */
+    aspect-ratio: 3 / 4;
     border-radius: 10px;
     overflow: hidden;
     position: relative;
