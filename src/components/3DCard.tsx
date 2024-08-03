@@ -1,7 +1,7 @@
 // src/components/3DCard.tsx
 import React, { useRef } from 'react';
 import { useSpring, animated } from 'react-spring';
-import { FaFacebook, FaTwitter, FaInstagram, FaTwitch } from 'react-icons/fa';
+import { FaFacebook, FaTwitter, FaInstagram, FaTwitch, FaInfoCircle } from 'react-icons/fa';
 import './styles/3DCard.css';
 
 interface CardProps {
@@ -26,6 +26,8 @@ const Card: React.FC<CardProps> = ({ image, title, description, socials, learn }
   const trans = (x: number, y: number) =>
     `perspective(300px) rotateX(${x}deg) rotateY(${y}deg) scale(1.1)`;
 
+  const hasSocials = socials.facebook || socials.twitter || socials.instagram || socials.twitch;
+
   return (
     <animated.div
       ref={ref}
@@ -44,9 +46,16 @@ const Card: React.FC<CardProps> = ({ image, title, description, socials, learn }
         <div className="card-gradient"></div>
       </div>
       <div className="card-content">
-        <h3>{title}</h3>
+        <div className="card-header">
+          <h3>{title}</h3>
+          {learn && (
+            <a href={learn} target="_blank" rel="noopener noreferrer" className="info-icon">
+              <FaInfoCircle />
+            </a>
+          )}
+        </div>
         <p>{description}</p>
-        <div className="card-socials">
+        <div className={`card-socials ${hasSocials ? 'active' : ''}`}>
           {socials.facebook && (
             <a href={socials.facebook} target="_blank" rel="noopener noreferrer" className="secondary">
               <FaFacebook />
@@ -68,9 +77,6 @@ const Card: React.FC<CardProps> = ({ image, title, description, socials, learn }
             </a>
           )}
         </div>
-        <a href={learn} className="card-learn" target="_blank" rel="noopener noreferrer">
-          Learn more
-        </a>
       </div>
     </animated.div>
   );
