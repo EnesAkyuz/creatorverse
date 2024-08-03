@@ -15,7 +15,7 @@ interface CardProps {
 const Card: React.FC<CardProps> = ({ image, title, description, socials, learn }) => {
   const ref = useRef<HTMLDivElement>(null);
   const [props, set] = useSpring(() => ({
-    transform: 'perspective(600px) rotateY(0deg) rotateX(0deg) scale(1)',
+    transform: 'perspective(300px) rotateY(0deg) rotateX(0deg) scale(1)',
   }));
 
   const calc = (x: number, y: number, rect: DOMRect) => [
@@ -37,7 +37,7 @@ const Card: React.FC<CardProps> = ({ image, title, description, socials, learn }
           set({ transform: trans(rotX, rotY) });
         }
       }}
-      onMouseLeave={() => set({ transform: 'perspective(600px) rotateY(0deg) rotateX(0deg) scale(1)' })}
+      onMouseLeave={() => set({ transform: 'perspective(300px) rotateY(0deg) rotateX(0deg) scale(1)' })}
       style={props}
     >
       <div className="card-image" style={{ backgroundImage: `url(${image})` }}>

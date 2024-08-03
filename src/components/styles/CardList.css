@@ -6,12 +6,17 @@
   gap: 1rem;
   justify-content: center;
   width: 100%;
-  max-width: 1200px; /* Optional: limit the max width for better readability */
+  max-width: 1920px; /* Optional: limit the max width for better readability */
 }
 
 .card-list > * {
   flex: 1 1 calc(33.333% - 1rem); /* Default to 3 columns */
   box-sizing: border-box; /* Ensure padding and border are included in the width and height */
+}
+
+.card-list > a {
+  max-width: 400px;
+  min-width: 300px;
 }
 
 @media (max-width: 1024px) {
