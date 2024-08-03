@@ -19,12 +19,12 @@ const Card: React.FC<CardProps> = ({ image, title, description, socials, learn }
   }));
 
   const calc = (x: number, y: number, rect: DOMRect) => [
-    -(y - (rect.top + rect.height / 2)) / 20,
-    (x - (rect.left + rect.width / 2)) / 20,
+    -(y - (rect.top + rect.height / 2)) / 100,
+    (x - (rect.left + rect.width / 2)) / 100,
   ];
 
   const trans = (x: number, y: number) =>
-    `perspective(600px) rotateX(${x}deg) rotateY(${y}deg) scale(1.1)`;
+    `perspective(300px) rotateX(${x}deg) rotateY(${y}deg) scale(1.1)`;
 
   return (
     <animated.div
