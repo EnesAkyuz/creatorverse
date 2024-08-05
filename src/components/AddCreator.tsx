@@ -1,10 +1,13 @@
 // src/components/AddCreator.tsx
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FaFacebook, FaTwitter, FaInstagram, FaTwitch } from 'react-icons/fa';
 import { supabase } from '../supabaseClient';
+import { useParams, useNavigate } from 'react-router-dom';
 import './styles/AddCreator.css';
 
 const AddCreator: React.FC = () => {
+  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const [formState, setFormState] = useState({
     name: '',
     image: '',
@@ -15,6 +18,37 @@ const AddCreator: React.FC = () => {
     twitch: '',
   });
   const [message, setMessage] = useState<string | null>(null);
+  const [isEditing, setIsEditing] = useState(false);
+
+  useEffect(() => {
+    if (id) {
+      setIsEditing(true);
+      const fetchCreator = async () => {
+        const { data, error } = await supabase
+          .from('cards')
+          .select()
+          .eq('id', id)
+          .single();
+
+        if (error) {
+          console.error('Error fetching creator:', error.message);
+          setMessage(`Error: ${error.message}`);
+        } else {
+          setFormState({
+            name: data.title,
+            image: data.image,
+            description: data.description,
+            facebook: data.socials.facebook,
+            twitter: data.socials.twitter,
+            instagram: data.socials.instagram,
+            twitch: data.socials.twitch,
+          });
+        }
+      };
+
+      fetchCreator();
+    }
+  }, [id]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -27,10 +61,11 @@ const AddCreator: React.FC = () => {
 
     const { name, image, description, facebook, twitter, instagram, twitch } = formState;
 
-    const { data, error } = await supabase
-      .from('cards')
-      .insert([
-        {
+    let result;
+    if (isEditing) {
+      result = await supabase
+        .from('cards')
+        .update({
           title: name,
           image,
           description,
@@ -40,17 +75,37 @@ const AddCreator: React.FC = () => {
             instagram,
             twitch,
           },
-          learn: '', // If you have a learn link field
-        },
-      ])
-      .select();
+        })
+        .eq('id', id)
+        .select();
+    } else {
+      result = await supabase
+        .from('cards')
+        .insert([
+          {
+            title: name,
+            image,
+            description,
+            socials: {
+              facebook,
+              twitter,
+              instagram,
+              twitch,
+            },
+            learn: '', // If you have a learn link field
+          },
+        ])
+        .select();
+    }
+
+    const { data, error } = result;
 
     if (error) {
-      console.error('Error adding creator:', error.message);
+      console.error('Error adding/updating creator:', error.message);
       setMessage(`Error: ${error.message}`);
     } else {
-      console.log('Creator added:', data);
-      setMessage('Creator added successfully!');
+      console.log('Creator added/updated:', data);
+      setMessage('Creator added/updated successfully!');
       setFormState({
         name: '',
         image: '',
@@ -60,12 +115,30 @@ const AddCreator: React.FC = () => {
         instagram: '',
         twitch: '',
       });
+      navigate('/');
+    }
+  };
+
+  const handleDelete = async () => {
+    const { data, error } = await supabase
+      .from('cards')
+      .delete()
+      .eq('id', id)
+      .select();
+
+    if (error) {
+      console.error('Error deleting creator:', error.message);
+      setMessage(`Error: ${error.message}`);
+    } else {
+      console.log('Creator deleted:', data);
+      setMessage('Creator deleted successfully!');
+      navigate('/');
     }
   };
 
   return (
     <div className="add-creator-container container">
-      <h2>Add a New Creator</h2>
+      <h2>{isEditing ? 'Edit Creator' : 'Add a New Creator'}</h2>
       <form onSubmit={handleSubmit}>
         <label>
           Name
@@ -99,7 +172,8 @@ const AddCreator: React.FC = () => {
             <input type="text" name="twitch" placeholder="The creator's Twitch handle (without the @)" value={formState.twitch} onChange={handleChange} />
           </label>
         </fieldset>
-        <button type="submit" className="contrast">Submit</button>
+        <button type="submit" className="contrast">{isEditing ? 'Update' : 'Submit'}</button>
+        {isEditing && <button type="button" className="contrast" onClick={handleDelete}>Delete</button>}
       </form>
       {message && <p>{message}</p>}
     </div>

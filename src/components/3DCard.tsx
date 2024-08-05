@@ -1,18 +1,18 @@
 // src/components/3DCard.tsx
 import React, { useRef } from 'react';
 import { useSpring, animated } from 'react-spring';
-import { FaFacebook, FaTwitter, FaInstagram, FaTwitch, FaInfoCircle } from 'react-icons/fa';
+import { FaFacebook, FaTwitter, FaInstagram, FaTwitch, FaInfoCircle, FaEdit, FaTrash } from 'react-icons/fa';
+import { CardItem } from '../types';
 import './styles/3DCard.css';
 
 interface CardProps {
-  image: string;
-  title: string;
-  description: string;
-  socials: { facebook?: string; twitter?: string; instagram?: string; twitch?: string };
-  learn: string;
+  item: CardItem;
+  onEdit: (id: number | string) => void;
+  onDelete: (id: number | string) => void;
 }
 
-const Card: React.FC<CardProps> = ({ image, title, description, socials, learn }) => {
+const Card: React.FC<CardProps> = ({ item, onEdit, onDelete }) => {
+  const { image, title, description, socials, learn, id } = item;
   const ref = useRef<HTMLDivElement>(null);
   const [props, set] = useSpring(() => ({
     transform: 'perspective(300px) rotateY(0deg) rotateX(0deg) scale(1)',
@@ -31,7 +31,7 @@ const Card: React.FC<CardProps> = ({ image, title, description, socials, learn }
   return (
     <animated.div
       ref={ref}
-      className="card container"
+      className="card"
       onMouseMove={({ clientX: x, clientY: y }) => {
         if (ref.current) {
           const rect = ref.current.getBoundingClientRect();
@@ -76,6 +76,14 @@ const Card: React.FC<CardProps> = ({ image, title, description, socials, learn }
               <FaTwitch />
             </a>
           )}
+        </div>
+        <div className="card-actions">
+          <button onClick={() => onEdit(id)} className="edit-button">
+            <FaEdit />
+          </button>
+          <button onClick={() => onDelete(id)} className="delete-button">
+            <FaTrash />
+          </button>
         </div>
       </div>
     </animated.div>
