@@ -1,0 +1,32 @@
+/* src/components/styles/CardDetail.css */
+.card-detail {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 2rem;
+    text-align: center;
+  }
+  
+  .card-detail img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+  }
+  
+  .card-socials {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+  
+  .card-socials a {
+    color: #1a73e8;
+    text-decoration: none;
+    font-size: 1.2rem;
+  }
+  
+  .card-socials a:hover {
+    text-decoration: underline;
+  }
+  
