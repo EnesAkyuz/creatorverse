@@ -85,10 +85,15 @@
 .card-socials a {
   color: white;
   font-size: 1.5rem;
+  transition: color 0.3s;
+}
+
+.card-socials a:hover {
+  color: #ccc;
 }
 
 .card-socials.active {
-  visibility: visible;
+  justify-content: flex-start; /* Align to the left */
 }
 
 .card-actions {
