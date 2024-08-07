@@ -1,4 +1,3 @@
-// src/components/AddCreator.tsx
 import React, { useState, useEffect } from 'react';
 import { FaFacebook, FaTwitter, FaInstagram, FaTwitch } from 'react-icons/fa';
 import { supabase } from '../supabaseClient';
@@ -61,6 +60,11 @@ const AddCreator: React.FC = () => {
 
     const { name, image, description, facebook, twitter, instagram, twitch } = formState;
 
+    const formattedFacebook = facebook ? `https://www.facebook.com/${facebook}` : '';
+    const formattedTwitter = twitter ? `https://www.x.com/${twitter}` : ''; // Changed to x.com
+    const formattedInstagram = instagram ? `https://www.instagram.com/${instagram}` : '';
+    const formattedTwitch = twitch ? `https://www.twitch.tv/${twitch}` : '';
+
     let result;
     if (isEditing) {
       result = await supabase
@@ -70,10 +74,10 @@ const AddCreator: React.FC = () => {
           image,
           description,
           socials: {
-            facebook,
-            twitter,
-            instagram,
-            twitch,
+            facebook: formattedFacebook,
+            twitter: formattedTwitter,
+            instagram: formattedInstagram,
+            twitch: formattedTwitch,
           },
         })
         .eq('id', id)
@@ -87,10 +91,10 @@ const AddCreator: React.FC = () => {
             image,
             description,
             socials: {
-              facebook,
-              twitter,
-              instagram,
-              twitch,
+              facebook: formattedFacebook,
+              twitter: formattedTwitter,
+              instagram: formattedInstagram,
+              twitch: formattedTwitch,
             },
             learn: '', // If you have a learn link field
           },
@@ -138,7 +142,7 @@ const AddCreator: React.FC = () => {
 
   return (
     <div className="add-creator-container container">
-      <h2>{isEditing ? 'Edit Creator' : 'Add a New Creator'}</h2>
+      <h2 className="title">{isEditing ? 'Edit Creator' : 'Add a New Creator'}</h2>
       <form onSubmit={handleSubmit}>
         <label>
           Name
@@ -160,8 +164,8 @@ const AddCreator: React.FC = () => {
             <input type="text" name="facebook" placeholder="The creator's Facebook handle (without the @)" value={formState.facebook} onChange={handleChange} />
           </label>
           <label>
-            <span><FaTwitter /> Twitter</span>
-            <input type="text" name="twitter" placeholder="The creator's Twitter handle (without the @)" value={formState.twitter} onChange={handleChange} />
+            <span><FaTwitter /> X</span>
+            <input type="text" name="twitter" placeholder="The creator's X handle (without the @)" value={formState.twitter} onChange={handleChange} />
           </label>
           <label>
             <span><FaInstagram /> Instagram</span>

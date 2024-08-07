@@ -1,8 +1,11 @@
-/* src/styles/AddCreator.css */
 .add-creator-container {
   max-width: 600px;
   margin: 0 auto;
   padding: 1rem;
+}
+
+.title {
+  text-align: center;
 }
 
 form label {
