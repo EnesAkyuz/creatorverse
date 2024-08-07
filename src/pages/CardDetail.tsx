@@ -37,9 +37,7 @@ const CardDetail: React.FC = () => {
   return (
     <div className="card-detail-container-custom">
       <div className="card-detail-custom">
-        <div className="card-detail-image-container-custom">
-          <img src={card.image} alt={card.title} className="card-detail-image-custom" />
-        </div>
+        <div className="card-detail-image-container-custom" style={{ backgroundImage: `url(${card.image})` }}></div>
         <div className="card-detail-content-custom">
           <h2 className="card-detail-title-custom">{card.title}</h2>
           <p className="card-detail-description-custom">{card.description}</p>

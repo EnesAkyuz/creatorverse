@@ -23,17 +23,10 @@
 
 .card-detail-image-container-custom {
   flex: 1;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: transparent;
-}
-
-.card-detail-image-custom {
-  width: 100%;
-  height: auto;
-  max-width: 300px;
-  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.1);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  min-height: 100%;
 }
 
 .card-detail-content-custom {
