@@ -9,11 +9,10 @@
 
 .content-container {
   width: 100%;
-  max-width: 1200px;
   display: flex;
   justify-content: center;
   padding: 2rem;
-  background-color: #111;
+  background: black;
   color: white;
   min-height: 80vh;
   flex-grow: 1;

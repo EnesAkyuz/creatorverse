@@ -1,5 +1,6 @@
 /* src/components/HeroSection.css */
 .hero {
+  position: relative; /* Make the hero section a positioned element */
   width: 100%;
   height: 300px;
   color: white;
@@ -7,6 +8,27 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-image: url('/src/assets/bg.jpg'); /* Replace with your image path */
+  background-size: cover; /* Ensure the image covers the entire hero section */
+  background-position: center; /* Center the background image */
+  background-repeat: no-repeat; /* Prevent the image from repeating */
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.7)); /* Faint dark gradient */
+  z-index: 1; /* Ensure the gradient is on top of the image but below the text */
+}
+
+.hero h1,
+.hero button {
+  position: relative;
+  z-index: 2; /* Ensure the text is on top of the gradient */
 }
 
 .hero h1 {

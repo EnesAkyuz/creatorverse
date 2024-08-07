@@ -50,8 +50,10 @@ const CardList: React.FC = () => {
     }
   };
 
+  const cardListClass = items.length === 1 ? 'single-card' : items.length === 2 ? 'two-cards' : '';
+
   return (
-    <div className="card-list">
+    <div className={`card-list ${cardListClass}`}>
       {items.map(item => (
         <Card
           key={item.id}
