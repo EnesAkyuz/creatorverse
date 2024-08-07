@@ -78,7 +78,6 @@
   display: flex;
   gap: 0.5rem;
   margin-top: 1rem;
-  visibility: hidden;
   height: 2rem; /* Ensure space is reserved for social icons */
 }
 
