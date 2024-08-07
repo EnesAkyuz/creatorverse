@@ -1,3 +1,4 @@
+/* src/components/AddCreator.tsx */
 import React, { useState, useEffect } from 'react';
 import { FaFacebook, FaTwitter, FaInstagram, FaTwitch } from 'react-icons/fa';
 import { supabase } from '../supabaseClient';
@@ -107,8 +108,7 @@ const AddCreator: React.FC<AddCreatorProps> = ({ id }) => {
               twitter: formattedTwitter,
               instagram: formattedInstagram,
               twitch: formattedTwitch,
-            },
-            learn: '', // If you have a learn link field
+            }
           },
         ])
         .select();
@@ -187,7 +187,7 @@ const AddCreator: React.FC<AddCreatorProps> = ({ id }) => {
           </label>
         </fieldset>
         <button type="submit" className="contrast">{isEditing ? 'Update' : 'Submit'}</button>
-        {isEditing && <button type="button" className="contrast" onClick={handleDelete}>Delete</button>}
+        {isEditing && <button id="delete-button-styling-id" type="button" className="contrast" onClick={handleDelete}>Delete</button>}
       </form>
       {message && <p>{message}</p>}
     </div>

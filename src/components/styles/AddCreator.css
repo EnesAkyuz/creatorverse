@@ -1,3 +1,4 @@
+/* src/components/styles/AddCreator.css */
 .add-creator-container {
   max-width: 600px;
   margin: 0 auto;
@@ -6,6 +7,10 @@
 
 .title {
   text-align: center;
+}
+
+#delete-button-styling-id {
+  width: 100%;
 }
 
 form label {

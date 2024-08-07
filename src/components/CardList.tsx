@@ -1,3 +1,4 @@
+/* src/components/CardList.tsx */
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../supabaseClient';
 import Card from './3DCard';

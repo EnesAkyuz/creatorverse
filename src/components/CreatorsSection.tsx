@@ -1,3 +1,4 @@
+/* src/components/CreatorSection.tsx */
 import React from 'react';
 import CardList from './CardList';
 import './styles/CreatorsSection.css';

@@ -1,3 +1,4 @@
+/* src/pages/HomePage.tsx */
 import React, { useState } from 'react';
 import HeroSection from '../components/HeroSection';
 import CreatorsSection from '../components/CreatorsSection';

@@ -1,3 +1,4 @@
+/* src/pages/styles/CardDetail.css */
 .card-detail-container-custom {
   display: flex;
   justify-content: center;
@@ -6,9 +7,9 @@
   padding: 2rem;
   box-sizing: border-box;
   background-image: url('/src/assets/bg.jpg');
-  background-size: cover; /* Ensure the image covers the entire hero section */
-  background-position: center; /* Center the background image */
-  background-repeat: no-repeat; /* Prevent the image from repeating */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
 .card-detail-custom {

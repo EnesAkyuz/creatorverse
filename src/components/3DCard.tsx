@@ -1,3 +1,4 @@
+/* src/components/3DCard.tsx */
 import React, { useRef } from 'react';
 import { useSpring, animated } from 'react-spring';
 import { FaFacebook, FaTwitter, FaInstagram, FaTwitch, FaInfoCircle, FaEdit, FaTrash } from 'react-icons/fa';
