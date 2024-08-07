@@ -1,46 +1,75 @@
-/* src/components/styles/CardDetail.css */
-body {
-  background-image: url('/src/assets/bg.jpg'); /* Replace with your image path */
+.card-detail-container-custom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+  box-sizing: border-box;
+  background-image: url('/src/assets/bg.jpg');
   background-size: cover; /* Ensure the image covers the entire hero section */
   background-position: center; /* Center the background image */
   background-repeat: no-repeat; /* Prevent the image from repeating */
 }
 
-.card-detail {
-    max-width: 600px;
-    margin: 0 auto;
-    padding: 2rem;
-    text-align: center;
-    color: white; /* Ensure text color is white */
-  }
-  
-  .card-detail img {
-    width: 100%;
-    max-width: 100%; /* Ensure the image does not exceed its container's width */
-    height: auto;
-    border-radius: 10px;
-    margin-bottom: 1rem;
-  }
-  
-  .card-socials {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-    margin-top: 1rem;
-    background-color: #444; /* Add background color for better contrast */
-    padding: 0.5rem; /* Add padding for better spacing */
-    border-radius: 10px; /* Round the corners */
-  }
-  
-  .card-socials a {
-    visibility: visible;
-    color: white; /* Ensure social icons are white */
-    font-size: 1.5rem;
-    text-decoration: none;
-    transition: color 0.3s;
-  }
-  
-  .card-socials a:hover {
-    color: #ccc;
-  }
-  
+.card-detail-custom {
+  display: flex;
+  background: #fff;
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  max-width: 800px;
+  width: 100%;
+}
+
+.card-detail-image-container-custom {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: transparent;
+}
+
+.card-detail-image-custom {
+  width: 100%;
+  height: auto;
+  max-width: 300px;
+  box-shadow: 0 8px 16px rgba(255, 255, 255, 0.1);
+}
+
+.card-detail-content-custom {
+  flex: 2;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card-detail-title-custom {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.card-detail-description-custom {
+  font-size: 1rem;
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  color: #666;
+}
+
+.card-detail-socials-custom {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.card-detail-socials-custom a {
+  color: #333;
+  font-size: 1.5rem;
+  transition: color 0.3s;
+}
+
+.card-detail-socials-custom a:hover {
+  color: #f06;
+}

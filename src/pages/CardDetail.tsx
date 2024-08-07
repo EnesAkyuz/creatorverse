@@ -1,4 +1,3 @@
-// src/components/CardDetail.tsx
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { supabase } from '../supabaseClient';
@@ -36,31 +35,37 @@ const CardDetail: React.FC = () => {
   }
 
   return (
-    <div className="card-detail">
-      <h2>{card.title}</h2>
-      <img src={card.image} alt={card.title} className="card-image" />
-      <p>{card.description}</p>
-      <div className="card-socials">
-        {card.socials?.facebook && (
-          <a href={card.socials.facebook} target="_blank" rel="noopener noreferrer">
-            <FaFacebook />
-          </a>
-        )}
-        {card.socials?.twitter && (
-          <a href={card.socials.twitter} target="_blank" rel="noopener noreferrer">
-            <FaTwitter />
-          </a>
-        )}
-        {card.socials?.instagram && (
-          <a href={card.socials.instagram} target="_blank" rel="noopener noreferrer">
-            <FaInstagram />
-          </a>
-        )}
-        {card.socials?.twitch && (
-          <a href={card.socials.twitch} target="_blank" rel="noopener noreferrer">
-            <FaTwitch />
-          </a>
-        )}
+    <div className="card-detail-container-custom">
+      <div className="card-detail-custom">
+        <div className="card-detail-image-container-custom">
+          <img src={card.image} alt={card.title} className="card-detail-image-custom" />
+        </div>
+        <div className="card-detail-content-custom">
+          <h2 className="card-detail-title-custom">{card.title}</h2>
+          <p className="card-detail-description-custom">{card.description}</p>
+          <div className="card-detail-socials-custom">
+            {card.socials?.facebook && (
+              <a href={card.socials.facebook} target="_blank" rel="noopener noreferrer">
+                <FaFacebook />
+              </a>
+            )}
+            {card.socials?.twitter && (
+              <a href={card.socials.twitter} target="_blank" rel="noopener noreferrer">
+                <FaTwitter />
+              </a>
+            )}
+            {card.socials?.instagram && (
+              <a href={card.socials.instagram} target="_blank" rel="noopener noreferrer">
+                <FaInstagram />
+              </a>
+            )}
+            {card.socials?.twitch && (
+              <a href={card.socials.twitch} target="_blank" rel="noopener noreferrer">
+                <FaTwitch />
+              </a>
+            )}
+          </div>
+        </div>
       </div>
     </div>
   );
