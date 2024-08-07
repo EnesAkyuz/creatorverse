@@ -1,46 +1,29 @@
-/* src/components/CardList.css */
 .card-list {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 1rem;
-  justify-content: center;
   width: 100%;
-  max-width: 1200px; /* Adjust this value as needed */
-  margin: 0 auto; /* Center the container */
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .card-list > * {
-  flex: 1 1 calc(33.333% - 1rem); /* Default to 3 columns */
-  box-sizing: border-box; /* Ensure padding and border are included in the width and height */
-  min-width: 300px;
-  max-width: 400px;
-  border-radius: 8px; /* Ensure border-radius is applied */
-  overflow: hidden; /* Ensure border-radius is visible */
+  box-sizing: border-box;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
-@media (max-width: 1024px) {
-  .card-list > * {
-    flex: 1 1 calc(50% - 1rem); /* 2 columns on medium screens */
-  }
-}
-
-@media (max-width: 768px) {
-  .card-list > * {
-    flex: 1 1 calc(100% - 1rem); /* 1 column on small screens */
-  }
-}
-
-/* Handle the single card case */
+/* Ensure the single card case is handled */
 .card-list.single-card > * {
   flex: 0 1 auto;
   justify-self: center;
   width: 100%;
-  max-width: 400px; /* Ensure single card does not expand too much */
+  max-width: 400px;
 }
 
-/* Handle the two cards case */
+/* Ensure the two cards case is handled */
 .card-list.two-cards > * {
-  flex: 1 1 calc(50% - 1rem); /* Ensure two cards do not expand too much */
+  flex: 1 1 calc(50% - 1rem);
   justify-self: center;
   max-width: 400px;
 }
