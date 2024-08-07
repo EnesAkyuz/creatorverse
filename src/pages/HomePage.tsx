@@ -1,18 +1,32 @@
-// src/components/HomePage.tsx
 import React, { useState } from 'react';
-import HeroSection from '../components/HeroSection.tsx';
-import CreatorsSection from '../components/CreatorsSection.tsx';
-import AddCreator from '../components/AddCreator.tsx';
+import HeroSection from '../components/HeroSection';
+import CreatorsSection from '../components/CreatorsSection';
+import AddCreator from '../components/AddCreator';
 import './styles/HomePage.css';
 
 const HomePage: React.FC = () => {
   const [showCreators, setShowCreators] = useState(true);
+  const [currentId, setCurrentId] = useState<string | null>(null);
+
+  const handleEdit = (id: string) => {
+    setCurrentId(id);
+    setShowCreators(false);
+  };
+
+  const handleAdd = () => {
+    setCurrentId(null);
+    setShowCreators(false);
+  };
 
   return (
     <div className="homepage-container">
-      <HeroSection setShowCreators={setShowCreators} />
+      <HeroSection setShowCreators={setShowCreators} onAdd={handleAdd} />
       <div className="content-container">
-        {showCreators ? <CreatorsSection /> : <AddCreator />}
+        {showCreators ? (
+          <CreatorsSection onEdit={handleEdit} />
+        ) : (
+          <AddCreator id={currentId} />
+        )}
       </div>
     </div>
   );

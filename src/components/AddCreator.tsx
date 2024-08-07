@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { FaFacebook, FaTwitter, FaInstagram, FaTwitch } from 'react-icons/fa';
 import { supabase } from '../supabaseClient';
-import { useParams, useNavigate } from 'react-router-dom';
 import './styles/AddCreator.css';
 
-const AddCreator: React.FC = () => {
-  const { id } = useParams<{ id: string }>();
-  const navigate = useNavigate();
+interface AddCreatorProps {
+  id: string | null;
+}
+
+const AddCreator: React.FC<AddCreatorProps> = ({ id }) => {
   const [formState, setFormState] = useState({
     name: '',
     image: '',
@@ -46,6 +47,17 @@ const AddCreator: React.FC = () => {
       };
 
       fetchCreator();
+    } else {
+      setIsEditing(false);
+      setFormState({
+        name: '',
+        image: '',
+        description: '',
+        facebook: '',
+        twitter: '',
+        instagram: '',
+        twitch: '',
+      });
     }
   }, [id]);
 
@@ -119,7 +131,6 @@ const AddCreator: React.FC = () => {
         instagram: '',
         twitch: '',
       });
-      navigate('/');
     }
   };
 
@@ -136,7 +147,6 @@ const AddCreator: React.FC = () => {
     } else {
       console.log('Creator deleted:', data);
       setMessage('Creator deleted successfully!');
-      navigate('/');
     }
   };
 

@@ -1,14 +1,15 @@
-// src/components/CardList.tsx
 import React, { useEffect, useState } from 'react';
 import { supabase } from '../supabaseClient';
-import { useNavigate } from 'react-router-dom';
 import Card from './3DCard';
 import { CardItem } from '../types';
 import './styles/CardList.css';
 
-const CardList: React.FC = () => {
+interface CardListProps {
+  onEdit: (id: string) => void;
+}
+
+const CardList: React.FC<CardListProps> = ({ onEdit }) => {
   const [items, setItems] = useState<CardItem[]>([]);
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchCards = async () => {
@@ -27,10 +28,6 @@ const CardList: React.FC = () => {
 
     fetchCards();
   }, []);
-
-  const handleEdit = (id: number | string) => {
-    navigate(`/edit/${id}`);
-  };
 
   const handleDelete = async (id: number | string) => {
     try {
@@ -58,8 +55,8 @@ const CardList: React.FC = () => {
         <Card
           key={item.id}
           item={item}
-          onEdit={handleEdit}
-          onDelete={handleDelete}
+          onEdit={() => onEdit(item.id.toString())}
+          onDelete={() => handleDelete(item.id)}
         />
       ))}
     </div>
