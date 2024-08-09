@@ -2,7 +2,9 @@
 
 Submitted by: **Enes Akyuz**
 
-About this web app: **👉🏿 app description here**
+About this web app: **Visit Live App At: https://creatorverse-codepath-enes-25i0.onrender.com/**
+
+Creatorverse is a small React Web Application I have created for CodePath. It allows users to add their favorite content creators and their socials, delete them or edit information about them! Currently, it is open for everyone, I shall close the database connection when my codepath submission is accepted.
 
 Time spent: **12** hours
 
