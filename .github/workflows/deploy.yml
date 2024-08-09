@@ -23,7 +23,7 @@ jobs:
       run: yarn build
 
     - name: Pre-Deploy
-      run: yarn pre-deploy
+      run: yarn predeploy
 
     - name: Deploy
       run: yarn deploy
