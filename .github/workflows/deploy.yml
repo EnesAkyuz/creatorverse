@@ -20,6 +20,12 @@ jobs:
       env:
         VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
         VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+      run: yarn build
+
+    - name: Pre-Deploy
+      run: yarn pre-deploy
+
+    - name: Deploy
       run: yarn deploy
 
     - name: Deploy to GitHub Pages
