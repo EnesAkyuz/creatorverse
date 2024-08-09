@@ -39,7 +39,7 @@ The following **additional** features are implemented:
 
 Here's a walkthrough of implemented required features:
 
-<img src='https://drive.google.com/uc?export=view&id=1fvdenIArPMJeu-pOvIGli8k8UbbolqWk' title='Video Walkthrough' width='600px' alt='Video Walkthrough' />
+![Video Walkthrough](https://github.com/user-attachments/assets/2251e065-2382-4b86-bec8-74e13d801aa0)
 
 <!-- Replace this with whatever GIF tool you used! -->
 GIF created with **Kap for MacOS**
