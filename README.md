@@ -29,7 +29,9 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-* [ ] List anything else that you added to improve the site's functionality!
+* [✅] Added custom CSS to improve visuals
+* [✅] Edited variable names, and improved the database structure by adding socials instead of a url column
+* [✅] Made the cards animated
 
 ## Video Walkthrough
 
